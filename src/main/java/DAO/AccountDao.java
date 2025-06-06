@@ -49,12 +49,9 @@ public class AccountDao {
         }
         return null;
     }
-     /**
-     * Retrieves an account from the database by its ID.
-     *
-     * @param accountId The ID of the account to retrieve.
-     * @return The Account object if found, otherwise null.
-     */
+    
+     //Retrieves an account from the database by its ID.
+
     public Account getAccountById(int accountId) {
         Connection connection = ConnectionUtil.getConnection();
         try {

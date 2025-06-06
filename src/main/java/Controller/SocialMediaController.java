@@ -82,8 +82,6 @@ public class SocialMediaController {
     private void createMessageHandler(Context ctx) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         Message message = mapper.readValue(ctx.body(), Message.class);
-        // Set the current time on the server-side
-        message.setTime_posted_epoch(System.currentTimeMillis());
         Message newMessage = messageService.createMessage(message);
         if (newMessage != null) {
             ctx.json(newMessage);
@@ -111,22 +109,21 @@ public class SocialMediaController {
         }
     }
 
-    /**
-     * Handles requests to delete a message by its ID.
-     */
+    
+    //Handles requests to delete a message by its ID.
+     
     private void deleteMessageHandler(Context ctx) {
         int messageId = Integer.parseInt(ctx.pathParam("message_id"));
         Message deletedMessage = messageService.deleteMessageById(messageId);
         if (deletedMessage != null) {
             ctx.json(deletedMessage);
         }
-        // Per requirement 6, status is 200 even if message didn't exist
         ctx.status(200);
     }
 
-    /**
-     * Handles requests to update a message.
-     */
+    
+    //Handles requests to update a message.
+     
     private void updateMessageHandler(Context ctx) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         int messageId = Integer.parseInt(ctx.pathParam("message_id"));
@@ -141,9 +138,9 @@ public class SocialMediaController {
         }
     }
 
-    /**
-     * Handles requests to get all messages from a specific user.
-     */
+    
+    //Handles requests to get all messages from a specific user.
+    
     private void getMessagesByUserHandler(Context ctx) {
         int accountId = Integer.parseInt(ctx.pathParam("account_id"));
         if (accountService.getAccountById(accountId) != null) {

@@ -19,13 +19,9 @@ public class MessageService {
         this.messageDao = messageDao;
         this.accountDao = accountDao;
     }
+    
+    //Creates a new message.
 
-    /**
-     * Creates a new message.
-     *
-     * @param message The message to be created.
-     * @return The created message with its ID, or null if creation fails.
-     */
     public Message createMessage(Message message) {
         String text = message.getMessage_text();
         if (text == null || text.isBlank() || text.length() > 255) {
@@ -37,31 +33,20 @@ public class MessageService {
         return messageDao.createMessage(message);
     }
 
-    /**
-     * Retrieves all messages.
-     *
-     * @return A list of all messages.
-     */
+    //Retrieves all messages.
+
     public List<Message> getAllMessages() {
         return messageDao.getAllMessages();
     }
 
-    /**
-     * Retrieves a message by its ID.
-     *
-     * @param messageId The ID of the message to retrieve.
-     * @return The message if found, otherwise null.
-     */
+    //Retrieves a message by its ID.
+
     public Message getMessageById(int messageId) {
         return messageDao.getMessageById(messageId);
     }
 
-    /**
-     * Deletes a message by its ID.
-     *
-     * @param messageId The ID of the message to delete.
-     * @return The deleted message if it existed, otherwise null.
-     */
+    //Deletes a message by its ID.
+
     public Message deleteMessageById(int messageId) {
         Message messageToDelete = messageDao.getMessageById(messageId);
         if (messageToDelete != null) {
@@ -70,13 +55,8 @@ public class MessageService {
         return messageToDelete;
     }
 
-    /**
-     * Updates the text of a message.
-     *
-     * @param messageId The ID of the message to update.
-     * @param message   A message object containing the new text.
-     * @return The updated message, or null if the update fails.
-     */
+    //Updates the text of a message.
+
     public Message updateMessage(int messageId, Message message) {
         String newText = message.getMessage_text();
         if (newText == null || newText.isBlank() || newText.length() > 255) {
@@ -93,12 +73,8 @@ public class MessageService {
         return null;
     }
 
-    /**
-     * Retrieves all messages from a specific user.
-     *
-     * @param accountId The ID of the user.
-     * @return A list of messages from the user.
-     */
+    //Retrieves all messages from a specific user.
+
     public List<Message> getMessagesByAccountId(int accountId) {
         return messageDao.getMessagesByAccountId(accountId);
     }

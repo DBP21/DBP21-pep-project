@@ -9,12 +9,8 @@ import java.util.List;
 
 public class MessageDao {
 
-    /**
-     * Inserts a new message into the database.
-     *
-     * @param message The Message object to be inserted.
-     * @return The Message object with its generated message_id, or null if insertion fails.
-     */
+    //Inserts a new message into the database.
+
     public Message createMessage(Message message) {
         try (Connection connection = ConnectionUtil.getConnection()) {
             String sql = "INSERT INTO Message (posted_by, message_text, time_posted_epoch) VALUES (?, ?, ?)";
@@ -37,11 +33,8 @@ public class MessageDao {
         return null;
     }
 
-    /**
-     * Retrieves all messages from the database.
-     *
-     * @return A list of all Message objects.
-     */
+    //Retrieves all messages from the database.
+   
     public List<Message> getAllMessages() {
         List<Message> messages = new ArrayList<>();
         try (Connection connection = ConnectionUtil.getConnection()) {
@@ -63,12 +56,8 @@ public class MessageDao {
         return messages;
     }
 
-    /**
-     * Retrieves a specific message by its ID.
-     *
-     * @param messageId The ID of the message to retrieve.
-     * @return The Message object if found, otherwise null.
-     */
+    //Retrieves a specific message by its ID.
+
     public Message getMessageById(int messageId) {
         try (Connection connection = ConnectionUtil.getConnection()) {
             String sql = "SELECT * FROM Message WHERE message_id = ?";
@@ -90,12 +79,8 @@ public class MessageDao {
         return null;
     }
 
-    /**
-     * Deletes a message from the database.
-     *
-     * @param messageId The ID of the message to delete.
-     * @return The number of rows affected (1 if successful, 0 otherwise).
-     */
+    //Deletes a message from the database.
+
     public int deleteMessageById(int messageId) {
         try (Connection connection = ConnectionUtil.getConnection()) {
             String sql = "DELETE FROM Message WHERE message_id = ?";
@@ -108,13 +93,8 @@ public class MessageDao {
         return 0;
     }
 
-    /**
-     * Updates the text of a specific message.
-     *
-     * @param messageId      The ID of the message to update.
-     * @param newMessageText The new text for the message.
-     * @return The number of rows affected (1 if successful, 0 otherwise).
-     */
+    //Updates the text of a specific message.
+    
     public int updateMessage(int messageId, String newMessageText) {
         try (Connection connection = ConnectionUtil.getConnection()) {
             String sql = "UPDATE Message SET message_text = ? WHERE message_id = ?";
@@ -128,12 +108,8 @@ public class MessageDao {
         return 0;
     }
 
-    /**
-     * Retrieves all messages posted by a specific user.
-     *
-     * @param accountId The ID of the user.
-     * @return A list of messages posted by the user.
-     */
+    //Retrieves all messages posted by a specific user.
+    
     public List<Message> getMessagesByAccountId(int accountId) {
         List<Message> messages = new ArrayList<>();
         try (Connection connection = ConnectionUtil.getConnection()) {
