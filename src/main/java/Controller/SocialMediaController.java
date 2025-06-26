@@ -28,7 +28,6 @@ public class SocialMediaController {
 
     /**
      * Defines and starts the Javalin application.
-     *
      * @return The running Javalin instance.
      */
     public Javalin startAPI() {
